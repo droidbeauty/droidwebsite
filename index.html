@@ -19,6 +19,91 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Raleway:wght@300;500&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    #contact {
+      scroll-margin-top: 2rem;
+    }
+
+    .contact-footer {
+      margin-top: clamp(4rem, 10vw, 7rem);
+      padding-top: 1.5rem;
+      border-top: 1px solid currentColor;
+    }
+
+    .contact-label {
+      margin: 0 0 0.85rem;
+      font-family: "Raleway", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin: 0;
+    }
+
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      min-height: 2.2rem;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid #000000;
+      border-radius: 999px;
+      background: #000000;
+      color: #ffffff;
+      font-family: "Raleway", sans-serif;
+      font-size: 0.69rem;
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      line-height: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 160ms ease, opacity 160ms ease;
+    }
+
+    .contact-pill svg {
+      width: 0.88rem;
+      height: 0.88rem;
+      flex: 0 0 auto;
+      stroke-width: 1.8;
+    }
+
+    .contact-pill:hover {
+      opacity: 0.78;
+      transform: translateY(-1px);
+    }
+
+    .contact-pill:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+    }
+
+    [data-theme="dark"] .contact-footer {
+      border-top-color: #ffffff;
+    }
+
+    [data-theme="dark"] .contact-pill {
+      border-color: #ffffff;
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .footer-meta {
+      margin: 1.4rem 0 0;
+      font-size: 0.75rem;
+    }
+  </style>
 </head>
 <body>
   <main class="page">
@@ -26,8 +111,8 @@
       <a class="brand" href="#top" aria-label="Droid Beauty home">Droid Beauty</a>
       <div class="header-actions">
         <nav aria-label="Primary navigation">
-          <a href="#apps">The lineup</a>
           <a href="#about">About</a>
+          <a href="#contact">Contact</a>
           <a href="https://play.google.com/store/apps/dev?id=7791472155222642322" target="_blank" rel="noreferrer">Play Store</a>
         </nav>
         <button class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
@@ -127,21 +212,34 @@
     <section id="about" class="about" aria-labelledby="about-title">
       <h2 id="about-title">About</h2>
       <p>Hi, I'm Dave - nice to see you visting here! For a decade now I've been creating homescreens that speak boldly through their minimalistic, thoughtful design. I create exclusively for Android and the Kustom ecosystem consisting of two apps - KWGT and KLWP. You can find over 700 widgets in my lineup and start creating your dream homescreen easily. Mix and match, find your unique flavor of Droid Beauty!</p>
-      <p>
-        <a href="mailto:droidbeautycontact@gmail.com">Email</a>
-        <span aria-hidden="true"> · </span>
-        <a href="https://instagram.com/droidbeauty" target="_blank" rel="noreferrer">Instagram</a>
-        <span aria-hidden="true"> · </span>
-        <a href="https://play.google.com/store/apps/dev?id=7791472155222642322" target="_blank" rel="noreferrer">All Apps</a>
-      </p>
     </section>
 
-    <footer>
-      <p>© <span id="year">2026</span> Droid Beauty</p>
+    <footer id="contact" class="contact-footer" aria-labelledby="contact-title">
+      <p class="contact-label" id="contact-title">Contact</p>
+      <div class="contact-links">
+        <a class="contact-pill" href="mailto:droidbeautycontact@gmail.com">
+          <i data-feather="mail" aria-hidden="true"></i>
+          <span>Email</span>
+        </a>
+        <a class="contact-pill" href="https://x.com/droidbeauty" target="_blank" rel="noreferrer">
+          <i data-feather="twitter" aria-hidden="true"></i>
+          <span>Twitter</span>
+        </a>
+        <a class="contact-pill" href="https://instagram.com/droidbeauty" target="_blank" rel="noreferrer">
+          <i data-feather="instagram" aria-hidden="true"></i>
+          <span>Instagram</span>
+        </a>
+      </div>
+      <p class="footer-meta">© <span id="year">2026</span> Droid Beauty</p>
     </footer>
   </main>
 
+  <script src="https://unpkg.com/feather-icons"></script>
   <script>
+    if (window.feather) {
+      feather.replace();
+    }
+
     const root = document.documentElement;
     const themeToggle = document.querySelector('.theme-toggle');
     const themeColor = document.querySelector('meta[name="theme-color"]');
