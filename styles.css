@@ -1,9 +1,18 @@
 :root {
+  color-scheme: light;
   --paper: #f7f5ef;
   --ink: #171713;
   --muted: #68675f;
   --rule: #d8d4c8;
   --measure: 43rem;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #000000;
+  --ink: #f7f5ef;
+  --muted: #aaa89f;
+  --rule: #343431;
 }
 
 * {
@@ -18,10 +27,12 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-family: "Raleway", Arial, sans-serif;
   font-size: 18px;
+  font-weight: 300;
   line-height: 1.65;
   text-rendering: optimizeLegibility;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 ::selection {
@@ -45,15 +56,74 @@ body {
 }
 
 .brand {
-  font-weight: 700;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  font-weight: 500;
+}
+
+.theme-toggle {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.38rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle .moon-icon {
+  fill: currentColor;
+  stroke: none;
+}
+
+.theme-toggle .sun-icon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .moon-icon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .sun-icon {
+  display: block;
 }
 
 a {
@@ -80,6 +150,7 @@ a:focus-visible {
   margin: 0 0 0.75rem;
   color: var(--muted);
   font-size: 0.82rem;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -93,10 +164,11 @@ p {
 
 h1 {
   max-width: 12ch;
+  font-family: "EB Garamond", Georgia, serif;
   margin-bottom: 1.25rem;
   font-size: clamp(2.7rem, 9vw, 5.3rem);
   font-weight: 500;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.035em;
   line-height: 0.98;
 }
 
@@ -108,8 +180,9 @@ h1 {
 
 h2 {
   margin-bottom: 2rem;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 500;
 }
 
 .category {
@@ -123,9 +196,10 @@ h2 {
 
 h3 {
   margin-bottom: 1rem;
+  font-family: "Raleway", Arial, sans-serif;
   color: var(--muted);
   font-size: 0.82rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -144,7 +218,7 @@ h3 {
 }
 
 .app-list a {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .app-list span {
@@ -183,9 +257,18 @@ footer p {
 
   .site-header {
     align-items: flex-start;
-    flex-direction: column;
-    gap: 0.45rem;
+    gap: 1rem;
     margin-bottom: 4.5rem;
+  }
+
+  .header-actions {
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  nav {
+    justify-content: flex-end;
+    gap: 0.75rem;
   }
 
   h1 {
@@ -207,5 +290,9 @@ footer p {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  body {
+    transition: none;
   }
 }

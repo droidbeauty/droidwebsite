@@ -32,4 +32,4 @@ Most changes only require editing `index.html`:
 - Edit app names, descriptions or Play Store URLs inside each category.
 - Replace the email and Instagram links in the About section.
 
-Typography, spacing and colors are controlled in `styles.css` under `:root` and the heading rules.
+Typography, spacing, colors and light/dark themes are controlled in `styles.css`. The site loads EB Garamond and Raleway from Google Fonts. The theme button uses inline SVG icons, respects the visitor’s system setting on first load and stores later choices in the browser.
